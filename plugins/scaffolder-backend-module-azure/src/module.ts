@@ -20,6 +20,7 @@ import {
 import { ScmIntegrations } from '@backstage/integration';
 import { scaffolderActionsExtensionPoint } from '@backstage/plugin-scaffolder-node/alpha';
 import { createPublishAzureAction } from './actions';
+import { createAzurePolicyConfigurationAction } from './actions/azurePolicyConfiguration';
 
 /**
  * @public
@@ -40,6 +41,9 @@ export const azureModule = createBackendModule({
           createPublishAzureAction({
             integrations,
             config,
+          }),
+          createAzurePolicyConfigurationAction({
+            integrations,
           }),
         );
       },
