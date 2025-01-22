@@ -131,6 +131,7 @@ describe('azure:policyConfiguration:create examples', () => {
         settings: expect.objectContaining({
           statusName: 'Status Name',
           statusGenre: 'Status Genre',
+          invalidateOnSourceUpdate: true,
           scope: [
             {
               refName: 'refs/heads/main',

@@ -95,6 +95,8 @@ export function setStatusSettingsFields(
     return {
       statusName: policySettings.statusName,
       statusGenre: policySettings.statusGenre,
+      invalidateOnSourceUpdate:
+        policySettings.invalidateOnSourceUpdate || false,
     };
   }
   return {};

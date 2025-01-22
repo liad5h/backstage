@@ -66,6 +66,7 @@ export const examples: TemplateExample[] = [
             policySettings: {
               statusName: 'Status Name',
               statusGenre: 'Status Genre',
+              invalidateOnSourceUpdate: true,
             },
             isEnabled: false,
           },

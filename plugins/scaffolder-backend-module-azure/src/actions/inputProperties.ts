@@ -104,6 +104,12 @@ const policySettings = {
         'The genre of the status. required when policyType is status.',
       type: 'string',
     },
+    invalidateOnSourceUpdate: {
+      title: 'Invalidate On Source Update',
+      description:
+        'Whether the policy should invalidate the status if the source branch is updated. optional when policyType is status.',
+      type: 'boolean',
+    },
     minimumApproverCount: {
       title: 'Minimum Approver Count',
       description:

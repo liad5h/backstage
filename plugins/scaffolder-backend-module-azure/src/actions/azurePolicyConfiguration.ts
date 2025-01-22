@@ -99,6 +99,7 @@ export function createAzurePolicyConfigurationAction(options: {
   }>({
     id: 'azure:policyConfiguration:create',
     examples,
+    supportsDryRun: true,
     description: 'Creates Azure DevOps policy configurations.',
     schema: {
       input: {
@@ -144,6 +145,14 @@ export function createAzurePolicyConfigurationAction(options: {
         repoUrl,
         integrations,
       );
+
+      // If this is a dry run, log and return
+      if (ctx.isDryRun) {
+        ctx.logger.info(
+          `Dry run complete, inputs: ${JSON.stringify(ctx.input)}`,
+        );
+        return;
+      }
 
       const webApi = await helpers.getAzureWebApi(
         host,
