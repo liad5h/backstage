@@ -28,8 +28,10 @@ const repositoryId = {
 
 const policyScopes = {
   type: 'array',
+  title: 'Policy Scopes',
+  description: 'The scopes to apply the policy to.',
   items: {
-    type: 'map',
+    type: 'object',
     properties: {
       refName: {
         title: 'Ref Name',
@@ -85,94 +87,154 @@ const token = {
 };
 
 const policySettings = {
-  status: {
-    title: 'status',
-    description: 'The status name and genre to set for the repository.',
-    type: 'object',
-    properties: {
-      name: {
-        title: 'Status name',
-        description: 'The name of the status.',
+  // TODO: refactor the functions and tests that are dependent on this object
+  title: 'Policy Settings',
+  description: 'The settings for the policy.',
+  type: 'object',
+  properties: {
+    statusName: {
+      title: 'Status name',
+      description:
+        'The name of the status. required when policyType is status.',
+      type: 'string',
+    },
+    statusGenre: {
+      title: 'Status genre',
+      description:
+        'The genre of the status. required when policyType is status.',
+      type: 'string',
+    },
+    minimumApproverCount: {
+      title: 'Minimum Approver Count',
+      description:
+        'The minimum number of reviewers required to approve a pull request. required when policyType is minimum_reviewers or required_reviewers.',
+      type: 'number',
+    },
+    creatorVoteCounts: {
+      title: 'Creator Vote Counts',
+      description:
+        'Whether the creator vote counts as a reviewer vote. optional when policyType is minimum_reviewers or required_reviewers.',
+      type: 'boolean',
+    },
+    requiredReviewerIds: {
+      title: 'Required Reviewer Ids',
+      description:
+        'The IDs of the required reviewers. required when policyType is required_reviewers.',
+      type: 'array',
+      items: {
         type: 'string',
       },
-      genre: {
-        title: 'Status genre',
-        description: 'The genre of the status.',
+    },
+    filenamePatterns: {
+      title: 'Filename Patterns',
+      description:
+        'The filename patterns to match. optional when policyType is required_reviewers.',
+      type: 'array',
+      items: {
         type: 'string',
       },
     },
-  },
-  minimum_reviewers: {
-    title: 'minimum_reviewers',
-    description:
-      'The minimum number of reviewers required to approve a pull request.',
-    type: 'object',
-    properties: {
-      minimumApproverCount: {
-        title: 'Minimum Approver Count',
-        description:
-          'The minimum number of reviewers required to approve a pull request.',
-        type: 'number',
-      },
-      creatorVoteCounts: {
-        title: 'Creator Vote Counts',
-        description: 'Whether the creator vote counts as a reviewer vote.',
-        type: 'boolean',
-      },
-    },
-  },
-  required_reviewers: {
-    title: 'required_reviewers',
-    description:
-      'The minimum number of reviewers from specific groups to approve a pull request.',
-    type: 'object',
-    properties: {
-      minimumApproverCount: {
-        title: 'Minimum Approver Count',
-        description:
-          'The minimum number of reviewers required to approve a pull request.',
-        type: 'number',
-      },
-      creatorVoteCounts: {
-        title: 'Creator Vote Counts',
-        description: 'Whether the creator vote counts as a reviewer vote.',
-        type: 'boolean',
-      },
-      requiredReviewerIds: {
-        title: 'Required Reviewer Ids',
-        description: 'The IDs of the required reviewers.',
-        type: 'array',
-        items: {
-          type: 'string',
-        },
-      },
-      filenamePatterns: {
-        title: 'Filename Patterns',
-        description: 'The filename patterns to match.',
-        type: 'array',
-        items: {
-          type: 'string',
-        },
-      },
-    },
-  },
-  searchable_branches: {
-    title: 'searchable_branches',
-    description:
-      'The branches to set as searchable, for example refs/heads/myBranchName.',
-    type: 'object',
-    properties: {
-      searchBranches: {
-        title: 'Search Branches',
-        description: 'The branches to set as searchable.',
-        type: 'array',
-        items: {
-          type: 'string',
-        },
+    searchBranches: {
+      title: 'Search Branches',
+      description:
+        'The branches to set as searchable. required when policyType is searchable_branches.',
+      type: 'array',
+      items: {
+        type: 'string',
       },
     },
   },
 };
+
+// const policySettings = {
+//   status: {
+//     title: 'status',
+//     description: 'The status name and genre to set for the repository.',
+//     type: 'object',
+//     properties: {
+//       name: {
+//         title: 'Status name',
+//         description: 'The name of the status.',
+//         type: 'string',
+//       },
+//       genre: {
+//         title: 'Status genre',
+//         description: 'The genre of the status.',
+//         type: 'string',
+//       },
+//     },
+//   },
+//   minimum_reviewers: {
+//     title: 'minimum_reviewers',
+//     description:
+//       'The minimum number of reviewers required to approve a pull request.',
+//     type: 'object',
+//     properties: {
+//       minimumApproverCount: {
+//         title: 'Minimum Approver Count',
+//         description:
+//           'The minimum number of reviewers required to approve a pull request.',
+//         type: 'number',
+//       },
+//       creatorVoteCounts: {
+//         title: 'Creator Vote Counts',
+//         description: 'Whether the creator vote counts as a reviewer vote.',
+//         type: 'boolean',
+//       },
+//     },
+//   },
+//   required_reviewers: {
+//     title: 'required_reviewers',
+//     description:
+//       'The minimum number of reviewers from specific groups to approve a pull request.',
+//     type: 'object',
+//     properties: {
+//       minimumApproverCount: {
+//         title: 'Minimum Approver Count',
+//         description:
+//           'The minimum number of reviewers required to approve a pull request.',
+//         type: 'number',
+//       },
+//       creatorVoteCounts: {
+//         title: 'Creator Vote Counts',
+//         description: 'Whether the creator vote counts as a reviewer vote.',
+//         type: 'boolean',
+//       },
+//       requiredReviewerIds: {
+//         title: 'Required Reviewer Ids',
+//         description: 'The IDs of the required reviewers.',
+//         type: 'array',
+//         items: {
+//           type: 'string',
+//         },
+//       },
+//       filenamePatterns: {
+//         title: 'Filename Patterns',
+//         description: 'The filename patterns to match.',
+//         type: 'array',
+//         items: {
+//           type: 'string',
+//         },
+//       },
+//     },
+//   },
+//   searchable_branches: {
+//     title: 'searchable_branches',
+//     description:
+//       'The branches to set as searchable, for example refs/heads/myBranchName.',
+//     type: 'object',
+//     properties: {
+//       searchBranches: {
+//         title: 'Search Branches',
+//         description: 'The branches to set as searchable.',
+//         type: 'array',
+//         items: {
+//           type: 'string',
+//         },
+//       },
+//     },
+//   },
+// };
 
 export {
   repoUrl,

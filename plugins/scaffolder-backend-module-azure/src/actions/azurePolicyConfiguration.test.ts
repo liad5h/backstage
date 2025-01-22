@@ -71,42 +71,6 @@ describe('azure:policyConfiguration:create', () => {
     jest.clearAllMocks();
   });
 
-  // it('should throw an error if no credentials are provided', async () => {
-  //   await expect(
-  //     getAzureWebApi('dev.azure.com', 'myOrg', integrations),
-  //   ).rejects.toThrow(InputError);
-  // });
-
-  // it('should return a WebApi instance with personal access token', async () => {
-  //   // const mockCredentialsProvider = {
-  //   //   getCredentials: jest.fn().mockResolvedValue({ type: 'pat', token: 'pat-token' }),
-  //   // };
-  //   // jest.spyOn(DefaultAzureDevOpsCredentialsProvider, 'fromIntegrations').mockReturnValue(mockCredentialsProvider);
-  //
-  //   const api = getAzureWebApi('dev.azure.com', 'myOrg', integrations);
-  //   expect(api).toBeInstanceOf(WebApi);
-  // });
-
-  // it('should return a WebApi instance with bearer token', async () => {
-  //   const mockCredentialsProvider = {
-  //     getCredentials: jest.fn().mockResolvedValue({ type: 'bearer', token: 'bearer-token' }),
-  //   };
-  //   jest.spyOn(DefaultAzureDevOpsCredentialsProvider, 'fromIntegrations').mockReturnValue(mockCredentialsProvider);
-  //
-  //   const api = await getAzureWebApi('dev.azure.com', 'myOrg', integrations);
-  //   expect(api).toBeInstanceOf(WebApi);
-  // });
-  //
-  // it('should use provided token if no credentials are found', async () => {
-  //   const mockCredentialsProvider = {
-  //     getCredentials: jest.fn().mockResolvedValue(undefined),
-  //   };
-  //   jest.spyOn(DefaultAzureDevOpsCredentialsProvider, 'fromIntegrations').mockReturnValue(mockCredentialsProvider);
-  //
-  //   const api = await getAzureWebApi('dev.azure.com', 'myOrg', integrations, 'provided-token');
-  //   expect(api).toBeInstanceOf(WebApi);
-  // });
-
   it(`test setSearchableBranchesSettingsFields`, async () => {
     const validInput = {
       policySettings: yaml.parse(examples[6].example).steps[0].input

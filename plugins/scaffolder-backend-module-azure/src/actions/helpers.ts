@@ -80,21 +80,21 @@ export const getAzureWebApi = async (
 /* @internal */
 export function setStatusSettingsFields(
   policySettings: {
-    [key: string]: { [key: string]: any };
+    [key: string]: any;
   },
   policyType: string,
 ): { [key: string]: string } | {} {
   const key: string = 'status';
   if (policyType === key) {
     if (
-      policySettings[key]?.name === undefined ||
-      policySettings[key]?.genre === undefined
+      policySettings?.statusName === undefined ||
+      policySettings?.statusGenre === undefined
     ) {
-      throw new Error(`name and genre must be set for ${key}`);
+      throw new Error(`statusName and statusGenre must be set for ${key}`);
     }
     return {
-      statusName: policySettings[key].name,
-      statusGenre: policySettings[key].genre,
+      statusName: policySettings.statusName,
+      statusGenre: policySettings.statusGenre,
     };
   }
   return {};
@@ -103,18 +103,18 @@ export function setStatusSettingsFields(
 /* @internal */
 export function setMinimumReviewersSettingsFields(
   policySettings: {
-    [key: string]: { [key: string]: any };
+    [key: string]: any;
   },
   policyType: string,
-): { [key: string]: string } | {} {
+): { [key: string]: boolean | number } | {} {
   const key: string = 'minimum_reviewers';
   if (policyType === key) {
-    if (policySettings[key]?.minimumApproverCount === undefined) {
+    if (policySettings?.minimumApproverCount === undefined) {
       throw new Error(`minimumApproverCount must be set for ${key}`);
     }
     return {
-      minimumApproverCount: policySettings[key]?.minimumApproverCount,
-      creatorVoteCounts: policySettings[key]?.creatorVoteCounts || false,
+      minimumApproverCount: policySettings?.minimumApproverCount,
+      creatorVoteCounts: policySettings?.creatorVoteCounts || false,
     };
   }
   return {};
@@ -123,25 +123,25 @@ export function setMinimumReviewersSettingsFields(
 /* @internal */
 export function setRequiredReviewersSettingsFields(
   policySettings: {
-    [key: string]: { [key: string]: any };
+    [key: string]: any;
   },
   policyType: string,
-): { [key: string]: string } | {} {
+): { [key: string]: string | boolean | number } | {} {
   const key: string = 'required_reviewers';
   if (policyType === key) {
     if (
-      policySettings[key]?.minimumApproverCount === undefined ||
-      policySettings[key]?.requiredReviewerIds === undefined
+      policySettings?.minimumApproverCount === undefined ||
+      policySettings?.requiredReviewerIds === undefined
     ) {
       throw new Error(
         `minimumApproverCount and requiredReviewerIds must be set for ${key}`,
       );
     }
     return {
-      minimumApproverCount: policySettings[key]?.minimumApproverCount,
-      creatorVoteCounts: policySettings[key]?.creatorVoteCounts || false,
-      requiredReviewerIds: policySettings[key]?.requiredReviewerIds,
-      filenamePatterns: policySettings[key]?.filenamePatterns || [],
+      minimumApproverCount: policySettings?.minimumApproverCount,
+      creatorVoteCounts: policySettings?.creatorVoteCounts || false,
+      requiredReviewerIds: policySettings?.requiredReviewerIds,
+      filenamePatterns: policySettings?.filenamePatterns || [],
     };
   }
   return {};
@@ -150,16 +150,16 @@ export function setRequiredReviewersSettingsFields(
 /* @internal */
 export function setSearchableBranchesSettingsFields(
   policySettings: {
-    [key: string]: { [key: string]: any };
+    [key: string]: any;
   },
   policyType: string,
-): { [key: string]: string } | {} {
+): { [key: string]: string[] } | {} {
   const key: string = 'searchable_branches';
   if (policyType === key) {
-    if (policySettings[key]?.searchBranches === undefined) {
+    if (policySettings?.searchBranches === undefined) {
       throw new Error(`searchBranches must be set for ${key}`);
     }
-    return { ...policySettings[key] };
+    return { searchBranches: policySettings.searchBranches };
   }
   return {};
 }

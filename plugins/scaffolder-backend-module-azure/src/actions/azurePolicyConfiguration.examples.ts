@@ -37,10 +37,8 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              status: {
-                name: 'Status Name',
-                genre: 'Status Genre',
-              },
+              statusName: 'Status Name',
+              statusGenre: 'Status Genre',
             },
           },
         },
@@ -66,10 +64,8 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              status: {
-                name: 'Status Name',
-                genre: 'Status Genre',
-              },
+              statusName: 'Status Name',
+              statusGenre: 'Status Genre',
             },
             isEnabled: false,
           },
@@ -96,10 +92,8 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              status: {
-                name: 'Status Name',
-                genre: 'Status Genre',
-              },
+              statusName: 'Status Name',
+              statusGenre: 'Status Genre',
             },
             isBlocking: false,
           },
@@ -133,10 +127,8 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              status: {
-                name: 'Status Name',
-                genre: 'Status Genre',
-              },
+              statusName: 'Status Name',
+              statusGenre: 'Status Genre',
             },
           },
         },
@@ -162,9 +154,7 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              minimum_reviewers: {
-                minimumApproverCount: 2,
-              },
+              minimumApproverCount: 2,
             },
           },
         },
@@ -191,11 +181,9 @@ export const examples: TemplateExample[] = [
               },
             ],
             policySettings: {
-              required_reviewers: {
-                minimumApproverCount: 1,
-                creatorVoteCounts: true,
-                requiredReviewerIds: ['azure-devops-group-id'],
-              },
+              minimumApproverCount: 1,
+              creatorVoteCounts: true,
+              requiredReviewerIds: ['azure-devops-group-id'],
             },
           },
         },
@@ -216,12 +204,10 @@ export const examples: TemplateExample[] = [
               'dev.azure.com?organization=organization&project=project&repo=repo',
             policyType: 'searchable_branches',
             policySettings: {
-              searchable_branches: {
-                searchBranches: [
-                  'refs/heads/myTestBranch',
-                  'refs/heads/anotherBranch',
-                ],
-              },
+              searchBranches: [
+                'refs/heads/myTestBranch',
+                'refs/heads/anotherBranch',
+              ],
             },
           },
         },

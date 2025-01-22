@@ -28,7 +28,7 @@ const createAzurePolicyConfiguration = async (opts: {
   isBlocking?: boolean;
   policyType: string;
   policyScopes: Array<{ [key: string]: string }>;
-  policySettings: { [key: string]: { [key: string]: any } };
+  policySettings: { [key: string]: any };
   project: string;
   repositoryId: string;
   azureWebApi: WebApi;
@@ -37,7 +37,7 @@ const createAzurePolicyConfiguration = async (opts: {
     isEnabled = true,
     isBlocking = true,
     policyType,
-    policyScopes,
+    policyScopes = [],
     policySettings,
     project,
     repositoryId,
@@ -92,7 +92,7 @@ export function createAzurePolicyConfigurationAction(options: {
     repositoryId: string;
     policyType: string;
     policyScopes?: Array<{ [key: string]: string }>;
-    policySettings: { [key: string]: { [key: string]: any } };
+    policySettings: { [key: string]: any };
     isEnabled?: boolean;
     isBlocking?: boolean;
     token?: string;
@@ -103,7 +103,7 @@ export function createAzurePolicyConfigurationAction(options: {
     schema: {
       input: {
         type: 'object',
-        required: ['repoUrl', 'policyType', 'policySettings', 'policyScopes'],
+        required: ['repoUrl', 'repositoryId', 'policyType', 'policySettings'],
         properties: {
           repoUrl: inputProps.repoUrl,
           repositoryId: inputProps.repositoryId,
